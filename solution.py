@@ -1,34 +1,49 @@
-"""
-Rozwiązania do laboratorium 1 z Obrazowania Biomedycznego.
-"""
 import numpy as np
+from solution import *
 
-"""
-3 - Kwadrat
-"""
-def square(size, side, start):
-    pass
+# Dostateczna
+print("- Ocena dostateczna")
 
-"""
-3 - Koło
-"""
-def midcircle(size):
-    pass
+## Kwadrat
+print("  kwadrat")
+image = square(512, 128, (32, 64))
+write_png(image, 'results/1_square.png')
 
-"""
-3 - Szachownica.
-"""
-def checkerboard(size):
-    pass
+# Kółko
 
-"""
-4 - Interpolacja najbliższych sąsiadów.
-"""
-def nn_interpolation(source, new_size):
-    pass
+print("  kółka")
+image = midcircle((512, 256))
+write_png(image, 'results/2_circle_1.png')
+image = midcircle((256, 512))
+write_png(image, 'results/2_circle_2.png')
+image = midcircle((512, 512))
+write_png(image, 'results/2_circle_3.png')
 
+
+# Szachownica
+
+print("  szachownica")
+image = checkerboard(256)
+write_png(image, 'results/3_checkerboard.png')
+
+
+# Dobra
+lenna = np.squeeze(read_png('data/mono/lenna.png'))
+
+## Interpolacja NN
+# zadanie na 4.5 - użyć funkcji round
+print("- Ocena dobra")
+print("  interpolacja najbliższych sąsiadów")
+image = nn_interpolation(lenna, (100, 100))
+image = nn_interpolation(image, (512, 512))
+write_png(image, 'results/4_nn.png')
+
+
+## Interpolacja dwuliniowa
 """
-5 - Interpolacja dwuliniowa
+print("- Ocena bardzo dobra")
+print("  interpolacja dwuliniowa")
+image = bilinear_interpolation(lenna, (100, 100))
+image = nn_interpolation(image, (512, 512))
+write_png(image, 'results/5_bilinear.png')
 """
-def bilinear_interpolation(source, new_size):
-    pass
